@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conference Speakers</title>
+  <!-- Tailwind CSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    /* Custom Styles to match design */
+    .slider-container {
+      overflow-x: auto;
+      display: flex;
+      gap: 20px;
+    }
+
+    /* Hide scrollbar for a cleaner look */
+    .slider-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    .custom-modal {
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+
+    .modal-container {
+      max-width: 600px;
+      padding: 40px;
+    }
+
+    .custom-modal p {
+      line-height: 1.8;
+    }
+
+    .custom-button {
+      background-color: #007BFF;
+      font-weight: bold;
+      padding: 0.75rem 1.5rem;
+      transition: background-color 0.3s;
+    }
+
+    .custom-button:hover {
+      background-color: #0056b3;
+    }
+
+    /* Additional custom styles */
+    .carousel-container {
+      position: relative;
+    }
+
+    .carousel {
+      overflow-x: hidden;
+      display: flex;
+      scroll-behavior: smooth;
+    }
+
+    .carousel::-webkit-scrollbar {
+      display: none;
+    }
+
+    .carousel-control {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      padding: 0.75rem;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .carousel-control.left {
+      left: 0;
+    }
+
+    .carousel-control.right {
+      right: 0;
+    }
+
+    .profile-img {
+      object-fit: cover;
+      width: 100%;
+      height: 150px;
+    }
+
+    /* Modal styles */
+    .modal-container {
+      display: none;
+      margin-top: 20px;
+      transition: all 0.5s ease-in-out;
+    }
+
+    .modal-container.active {
+      display: flex;
+    }
+
+    .modal-profile-img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      margin-right: 20px;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-100">
+  <div class="container mx-auto p-8">
+    <h1 class="text-4xl font-bold mb-10 text-center">View our Featured Speakers for the Event</h1>
+
+    <!-- Modal (Popover) appears here below the heading -->
+    <div id="speakerModal" class="modal-container bg-white p-6 rounded-lg shadow-xl mx-auto flex items-center mb-8">
+      <img id="modalImage" src="" alt="Speaker Profile" class="modal-profile-img rounded-lg">
+      <div>
+        <button id="closeModal"
+          class="text-gray-500 hover:text-gray-800 text-2xl font-semibold float-right">&times;</button>
+        <h2 id="speakerName" class="text-2xl font-bold mb-2"></h2>
+        <h3 id="speakerPosition" class="text-lg font-semibold text-gray-600 mb-4"></h3>
+        <p id="speakerDetails" class="text-gray-700"></p>
+      </div>
+    </div>
+
+    <!-- Carousel Container -->
+    <div class="carousel-container">
+      <!-- Previous Button -->
+      <button class="carousel-control left" id="prevBtn">&#10094;</button>
+
+      <!-- Carousel -->
+      <div id="speakerCarousel" class="carousel">
+        <!-- Speaker Cards will be dynamically generated -->
+      </div>
+
+      <!-- Next Button -->
+      <button class="carousel-control right" id="nextBtn">&#10095;</button>
+    </div>
+  </div>
+
+  <button class="bg-blue-600 rounded-lg p-4 text-white">See the Program</button>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
